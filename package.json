@@ -1,0 +1,23 @@
+{
+  "name": "nightlife-coordination-app",
+  "version": "1.0.0",
+  "description": "Nightlife Coordination App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shintouki/nightlife-coordination-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shintouki/nightlife-coordination-app/issues"
+  },
+  "homepage": "https://github.com/shintouki/nightlife-coordination-app#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.21"
+  }
+}
