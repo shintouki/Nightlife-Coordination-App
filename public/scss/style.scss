@@ -1,0 +1,32 @@
+@import 'nav-bar';
+@import 'search';
+@import 'my-bars';
+
+body {
+  background-color: #333;
+  color: white;
+}
+
+.container {
+  background-color: black;
+  border: none;
+}
+
+#author-container {
+  background-color: #333;
+  padding: 0;
+}
+
+.twitter-color {
+  background-color: #4099FF;
+  color: white;
+  border: none;
+}
+
+input {
+  color: black;
+}
+
+.info-color {
+  color: #33b5e5
+}
