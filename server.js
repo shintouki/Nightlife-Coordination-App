@@ -14,7 +14,7 @@ require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
 
-app.set('views', process.cwd() + '/public')
+app.set('views', process.cwd() + '/public/pug')
 app.set('view engine', 'pug')
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
