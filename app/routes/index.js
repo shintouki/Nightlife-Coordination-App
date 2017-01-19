@@ -4,9 +4,9 @@ var path = process.cwd();
 
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 
-module.exports = function (app, passport) {
+module.exports = function(app, passport) {
 
-  function isLoggedIn (req, res, next) {
+  function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     } else {
@@ -17,7 +17,7 @@ module.exports = function (app, passport) {
   var clickHandler = new ClickHandler();
 
   app.route('/')
-  .get(isLoggedIn, function (req, res) {
+  .get(isLoggedIn, function(req, res) {
     res.sendFile(path + '/public/index.html');
   });
 

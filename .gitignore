@@ -1,3 +1,5 @@
 node_modules/
-.eslintrc
-.env
+.sass-cache/
+.eslintrc*
+.env*
+npm-debug.log
