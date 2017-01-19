@@ -11,7 +11,15 @@ html(lang="en")
       include nav-bar-logged-in.pug
     else
       include nav-bar-logged-out.pug
-
+    .container.panel.panel-default
+      .panel-body
+        h4.text-center Search for bars.
+        h4.text-center Select attend to tell others that you plan on attending that bar tonight!
+        if (user)
+          h4.text-center Choose what bars  you plan on going to tonight!
+        else
+          h4.text-center Log in with Twitter to choose what bars you plan on going to tonight!
+        #all-polls.list-group
     include author.pug
 
     include jquery.pug
