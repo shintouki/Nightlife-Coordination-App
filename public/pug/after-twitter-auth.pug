@@ -1,0 +1,7 @@
+script(type='text/javascript').
+  var appUrl = window.location.origin;
+  if (window.opener) {
+      window.opener.focus();
+  }
+  window.opener.location = appUrl + '/search';
+  window.close();
