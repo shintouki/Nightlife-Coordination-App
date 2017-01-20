@@ -1,14 +1,19 @@
 'use strict';
 
 (function () {
-  var 
+  var searchInput = $('#search-input');
+  var searchButton = $('#search-button');
   var searchResult = $('#search-result');
   var apiUrl = appUrl + '/api/:id';
 
-  $("#id_of_textbox").keyup(function(event){
+  searchInput.keyup(function(event) {
     if(event.keyCode == 13){
-      $("#id_of_button").click();
+      searchButton.click();
     }
+  });
+
+  searchButton.click(function() {
+    console.log("asdf");
   });
    
 })();
