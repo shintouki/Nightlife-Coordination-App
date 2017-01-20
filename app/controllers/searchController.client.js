@@ -17,6 +17,10 @@
     var searchLocation = searchInput.val();
     $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
       // console.log(data);
+
+      // Empty search results div before adding new search results
+      searchResult.empty();
+      
       for (var i = 0; i < data.length; i++) {
         var rating = data[i].rating;
         var name = data[i].name;
@@ -30,8 +34,19 @@
           src: image_url,
           alt: 'Image of ' + name
         });
+        var $name = $("<a>", {
+          href: url,
+          text: name + ' - ' + rating + ' stars'
+        });
+        var $snippet = $("<p>", {
+          text: snippet_text
+        });
+
 
         $div.append($img);
+        $div.append($name);
+        $div.append($snippet);
+
         searchResult.append($div);
       }
     }, 'json');

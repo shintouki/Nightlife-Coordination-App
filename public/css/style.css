@@ -29,6 +29,9 @@ body {
   background-color: black;
   border: none; }
 
+.list-group-item {
+  background-color: purple; }
+
 #author-container {
   background-color: #333;
   padding: 0; }
