@@ -25,10 +25,9 @@ html(lang="en")
     include jquery.pug
     include bootstrap-js.pug
     script(type='text/javascript', src='/common/ajax-functions.js')
-    script(type='text/javascript', src='/controllers/barController.client.js')
+    script(type='text/javascript', src='/controllers/searchController.client.js')
     if (user)
       script(type='text/javascript', src='/controllers/userController.client.js')
-    script(type='text/javascript', src='/common/fixNavbarActive.js')
     script(type='text/javascript', src='/common/fixNavbarActive.js')
     //- Load from server if cdn failed
     include bootstrap-css.pug
