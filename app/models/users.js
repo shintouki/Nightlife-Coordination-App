@@ -5,7 +5,11 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
   twitter: {
-      id: String
+    id: String,
+    displayName: String
+  },
+  userBars: {
+    barList: [String]
   }
 });
 
