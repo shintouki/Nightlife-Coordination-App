@@ -21,7 +21,22 @@ function BarHandler() {
 
     yelp.search({ term: 'bar', location: searchLocation })
     .then(function (data) {
-      console.log(data);
+      var businesses = data.businesses;
+      var returnArr = [];
+      for (var i = 0; i < businesses.length; i++) {
+        var business = businesses[i];
+        var businessDataObj = {
+          rating: business.rating,
+          name: business.name,
+          url: business.url,
+          snippet_text: business.snippet_text,
+          image_url: business.image_url,
+          id: business.id
+        };
+        returnArr.push(businessDataObj);
+      }
+
+      res.json(returnArr);
     })
     .catch(function (err) {
       console.error(err);

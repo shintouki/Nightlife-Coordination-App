@@ -16,7 +16,8 @@
   searchButton.click(function() {
     var searchLocation = searchInput.val();
     $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
-      console.log(data);
+      // console.log(data);
+      
     }, 'json');
   });
    
