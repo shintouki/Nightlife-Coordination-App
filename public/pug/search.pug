@@ -19,7 +19,11 @@ html(lang="en")
           h4.text-center Choose what bars  you plan on going to tonight!
         else
           h4.text-center Log in with Twitter to choose what bars you plan on going to tonight!
-        #all-bars.list-group
+        .input-group
+          input#search-input.form-control(type='text', placeholder='Enter bar location')
+          span.input-group-btn
+            button#search-button.btn.btn-primary Search
+        #search-result.list-group
     include author.pug
 
     include jquery.pug
