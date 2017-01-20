@@ -24,9 +24,12 @@ module.exports = function(app, passport) {
   });
 
   app.route('/search')
-    .get(function (req, res) {
+    .get(function(req, res) {
       res.render('search');
     });
+
+  app.route('/yelp-search')
+    .get(barHandler.yelpSearch);
 
   app.route('/logout')
     .get(function (req, res) {
@@ -35,7 +38,7 @@ module.exports = function(app, passport) {
     });
 
   app.route('/mybars')
-    .get(isLoggedIn, function (req, res) {
+    .get(isLoggedIn, function(req, res) {
       res.render('my-bars');
     });
 
@@ -49,7 +52,7 @@ module.exports = function(app, passport) {
     }));
 
   app.route('/after-twitter-auth')
-    .get(isLoggedIn, function (req, res) {
+    .get(isLoggedIn, function(req, res) {
       res.render('after-twitter-auth');
     });
 
@@ -57,7 +60,7 @@ module.exports = function(app, passport) {
     .get(barHandler.getAllBars);
 
   app.route('/api/:id')
-    .get(isLoggedIn, function (req, res) {
+    .get(isLoggedIn, function(req, res) {
       res.json(req.user.twitter);
     });
 

@@ -14,16 +14,10 @@
   });
 
   searchButton.click(function() {
-    var Yelp = require('yelp');
-    
-    var yelp = new Yelp({
-      consumer_key: 'consumer-key',
-      consumer_secret: 'consumer-secret',
-      token: 'token',
-      token_secret: 'token-secret',
-    });
-
-    console.log(yelp);
+    var searchLocation = searchInput.val();
+    $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
+      console.log(data);
+    }, 'json');
   });
    
 })();

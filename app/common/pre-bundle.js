@@ -1,1 +1,0 @@
-var Yelp = require('yelp');
