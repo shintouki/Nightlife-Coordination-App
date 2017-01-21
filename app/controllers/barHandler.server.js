@@ -74,18 +74,12 @@ function BarHandler() {
             // Add id to list if not found
             businessIdList.push(buttonId);
           }
-          // else {
-          //   // Remove id from list if found
-          //   businessIdList.splice(businessIdList.indexOf(buttonId), 1);
-          // }
 
           doc.save(function(err, doc) {
             if (err) {
               res.send(null, 500);
             }
           })
-
-          // res.json(doc.userBars);
         }
       });
 
@@ -129,11 +123,53 @@ function BarHandler() {
           });
         }
 
-      })
+      });
 
   };
 
   this.deleteUserBar = function(req, res) {
+    var buttonId = req.body.buttonId;
+
+    // Remove bar from user bar id list
+    Users
+      .findOne({ 'twitter.id': req.user.twitter.id })
+      .exec(function(err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          var businessIdList = doc.userBars.businessIdList;
+          if (businessIdList.indexOf(buttonId) !== -1) {
+            businessIdList.splice(businessIdList.indexOf(buttonId));
+          }
+
+          doc.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+          })
+        }
+      });
+
+      Bars
+      .findOne({ 'businessId': buttonId})
+      .exec(function(err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          // Decrement numAttending by 1 since user is not going anymore
+          doc.numAttending--;
+
+          doc.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+            res.send(doc);
+          })
+        }
+
+      });
 
   };
 
