@@ -69,7 +69,7 @@
 
         var $snippet = $("<p>", {
           text: snippet_text,
-          class: 'text-italic'
+          class: 'snippet-text text-italic'
         });
 
         var $button = $("<button>", {
@@ -103,13 +103,28 @@
     var leftDiv = grandparent.find('.leftDiv');
     var rightDiv = grandparent.find('.rightDiv');
 
-    // var rating =
-    // var name =
-    // var url = rightDiv.find('a').attr('href');
-    // var snippet_text = 
-    // var image_url = leftDiv.find('img').attr('src');
-    $.post('/api/:id/bars', { buttonId: buttonId }, function(data) {
-      // console.log(data);
+    var rating = rightDiv.find('a').find('.rating').text();
+    var name = rightDiv.find('a').find('.name').text();
+    var url = rightDiv.find('a').attr('href');
+    var snippet_text = rightDiv.find('.snippet-text').text();
+    var image_url = leftDiv.find('img').attr('src');
+
+    // console.log(rating);
+    // console.log(name);
+    // console.log(url);
+    // console.log(snippet_text);
+    // console.log(image_url);
+
+    $.post('/api/:id/bars', {
+        rating: rating,
+        name: name,
+        url: url,
+        snippet_text: snippet_text,
+        image_url: image_url,
+        buttonId: buttonId
+      }, function(data) {
+        console.log(data);
+    
     });
     
 

@@ -103,22 +103,24 @@ function BarHandler() {
             }
             res.send(doc);
           })
-          // res.send(doc);
         }
         else {
           // Bar does not exist in DB so create bar and save.
-          var newBar = new Bar();
+          var newBar = new Bars();
           newBar.rating = rating;
           newBar.name = name;
           newBar.url = url;
           newBar.snippet_text = snippet_text;
           newBar.image_url = image_url;
           newBar.numAttending = 1;
+          newBar.businessId = buttonId;
 
           newBar.save(function(err, doc) {
             if (err) {
               res.send(null, 500);
             }
+            // You can't send doc because doc did not exist.
+            // So send the newly created newBar doc
             // res.send(doc);
             res.send(newBar);
           });
