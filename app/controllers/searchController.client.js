@@ -125,12 +125,18 @@
             image_url: image_url,
             buttonId: buttonId
           }, function(data) {
+            console.log("post request");
             console.log(data);
         
         });
       }
       else {
-        
+        $.delete('/api/:id/bars', {
+          buttonId: buttonId
+        }, function(data) {
+          console.log("delete req");
+          console.log(data);
+        })
       }
 
     });
