@@ -28,6 +28,7 @@
         var snippet_text = data[i].snippet_text;
         var image_url = data[i].image_url;
         var id = data[i].id;
+        var buttonId = id + '-btn';
 
         var $div = $("<div>", {
           class: "list-group-item"
@@ -75,7 +76,7 @@
         var $button = $("<button>", {
           text: '0 GOING',
           class: 'going-btn btn btn-primary',
-          id: id + '-btn'
+          id: buttonId
         });
 
         $leftDiv.append($img);
@@ -87,15 +88,36 @@
         $div.append($row);
 
         searchResult.append($div);
+
       }
+
+      $.get('/api/allbars', function (data) {
+        // List of list-group-items which holds each bar details
+        // var listGroupItems = $('.list-group-item');
+        var $buttons = $('.going-btn');
+        $('.going-btn').each(function(i, obj) {
+          var currButtonId = obj.id;
+          if (currButtonId in data) {
+            var numAttending = data[currButtonId].numAttending;
+            $(this).text(numAttending + ' GOING');
+          }
+        
+
+        });
+
+      }, 'json');
+
     }, 'json');
+
+    
+
   });
 
   searchResult.on("click", ".going-btn", function() {
     if (!user) {
       // Open login window
     }
-
+    var currButton = $(this);
     var buttonId = $(this).attr('id');
     
     // Extract bar data from html
@@ -109,13 +131,8 @@
     var snippet_text = rightDiv.find('.snippet-text').text();
     var image_url = leftDiv.find('img').attr('src');
 
-    // console.log(rating);
-    // console.log(name);
-    // console.log(url);
-    // console.log(snippet_text);
-    // console.log(image_url);
     $.get('/api/:id/bars', function(data) {
-      var userBars = data;
+      var userBars = data.businessIdList;
       if (userBars.indexOf(buttonId) === -1) {
         $.post('/api/:id/bars', {
             rating: rating,
@@ -127,7 +144,8 @@
           }, function(data) {
             console.log("post request");
             console.log(data);
-        
+            var numAttending = data.numAttending;
+            currButton.text(numAttending + ' GOING');
         });
       }
       else {
@@ -136,6 +154,8 @@
         }, function(data) {
           console.log("delete req");
           console.log(data);
+          var numAttending = data.numAttending;
+          currButton.text(numAttending + ' GOING');
         })
       }
 
