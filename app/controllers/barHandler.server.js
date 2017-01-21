@@ -55,26 +55,69 @@ function BarHandler() {
 
   this.addUserBar = function(req, res) {
     var buttonId = req.body.buttonId;
-    // console.log("button id is: " + buttonId);
+    var rating = req.body.rating;
+    var name = req.body.name;
+    var url = req.body.url;
+    var snippet_text = req.body.snippet_text;
+    var image_url = req.body.image_url;
 
+    // Add business id to user doc if it's not in there already
     Users
       .findOne({ 'twitter.id': req.user.twitter.id })
       .exec(function(err, doc) {
-        var businessIdList = doc.userBars.businessIdList;
-        // console.log(businessIdList);
-        if (businessIdList.indexOf(buttonId) === -1) {
-          // console.log("id not found...");
-          businessIdList.push(buttonId);
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          var businessIdList = doc.userBars.businessIdList;
+          // console.log(businessIdList);
+          if (businessIdList.indexOf(buttonId) === -1) {
+            // console.log("id not found...");
+            businessIdList.push(buttonId);
+          }
+
+          doc.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+          })
+
+          // res.json(doc.userBars);
+        }
+      });
+
+    // Update number of people going in bar doc
+    Bars
+      .findOne({ 'businessId': buttonId})
+      .exec(function(err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          // Bar already exists in DB so just update the number attending
+
+        }
+        else {
+          // Bar does not exist in DB so create bar and save.
+          var newBar = new Bar();
+          newBar.rating = rating;
+          newBar.name = name;
+          newBar.url = url;
+          newBar.snippet_text = snippet_text;
+          newBar.image_url = image_url;
+          newBar.numAttending = 1;
+
+          newBar.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+            // res.send(doc);
+            res.send(newBar);
+          });
         }
 
-        doc.save(function(err, doc) {
-          if (err) {
-            res.send(null, 500);
-          }
-        })
+      })
 
-        res.json(doc.userBars);
-      });
   };
 
   this.deleteUserBar = function(req, res) {
