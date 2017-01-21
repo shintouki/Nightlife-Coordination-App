@@ -95,7 +95,15 @@ function BarHandler() {
         }
         else if (doc) {
           // Bar already exists in DB so just update the number attending
+          doc.numAttending++;
 
+          doc.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+            res.send(doc);
+          })
+          // res.send(doc);
         }
         else {
           // Bar does not exist in DB so create bar and save.

@@ -52,9 +52,20 @@
 
         var $name = $("<a>", {
           href: url,
-          text: name + ' - ' + rating + ' stars',
-          class: 'barName'
+          class: 'barName',
         });
+
+        $name
+          .append($('<span></span>')
+            .addClass('name')
+            .text(name)
+          )
+          .append(' - ')
+          .append($('<span></span>')
+            .addClass('rating')
+            .text(rating)
+          )
+          .append(' stars');
 
         var $snippet = $("<p>", {
           text: snippet_text,
@@ -87,6 +98,16 @@
 
     var buttonId = $(this).attr('id');
     
+    // Extract bar data from html
+    var grandparent = $(this).parent().parent();
+    var leftDiv = grandparent.find('.leftDiv');
+    var rightDiv = grandparent.find('.rightDiv');
+
+    // var rating =
+    // var name =
+    // var url = rightDiv.find('a').attr('href');
+    // var snippet_text = 
+    // var image_url = leftDiv.find('img').attr('src');
     $.post('/api/:id/bars', { buttonId: buttonId }, function(data) {
       // console.log(data);
     });
