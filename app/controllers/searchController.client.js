@@ -114,18 +114,28 @@
     // console.log(url);
     // console.log(snippet_text);
     // console.log(image_url);
+    $.get('/api/:id/bars', function(data) {
+      var userBars = data;
+      if (userBars.indexOf(buttonId) === -1) {
+        $.post('/api/:id/bars', {
+            rating: rating,
+            name: name,
+            url: url,
+            snippet_text: snippet_text,
+            image_url: image_url,
+            buttonId: buttonId
+          }, function(data) {
+            console.log(data);
+        
+        });
+      }
+      else {
+        
+      }
 
-    $.post('/api/:id/bars', {
-        rating: rating,
-        name: name,
-        url: url,
-        snippet_text: snippet_text,
-        image_url: image_url,
-        buttonId: buttonId
-      }, function(data) {
-        console.log(data);
-    
     });
+
+    
     
 
   });

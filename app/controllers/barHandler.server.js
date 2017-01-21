@@ -70,11 +70,14 @@ function BarHandler() {
         }
         else if (doc) {
           var businessIdList = doc.userBars.businessIdList;
-          // console.log(businessIdList);
           if (businessIdList.indexOf(buttonId) === -1) {
-            // console.log("id not found...");
+            // Add id to list if not found
             businessIdList.push(buttonId);
           }
+          // else {
+          //   // Remove id from list if found
+          //   businessIdList.splice(businessIdList.indexOf(buttonId), 1);
+          // }
 
           doc.save(function(err, doc) {
             if (err) {
