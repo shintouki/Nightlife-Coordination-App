@@ -46,21 +46,34 @@ function BarHandler() {
   this.getUserBarIds = function(req, res) {
     Users
       .findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
-      .exec(function(err, result) {
+      .exec(function(err, doc) {
         if (err) { throw err; }
         
-        res.json(result.userBars);
+        res.json(doc.userBars);
       });
   };
 
   this.addUserBar = function(req, res) {
-    Users
-      .findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
-        {
-          
-        })
-      .exec(function(err, result) {
+    var buttonId = req.body.buttonId;
+    // console.log("button id is: " + buttonId);
 
+    Users
+      .findOne({ 'twitter.id': req.user.twitter.id })
+      .exec(function(err, doc) {
+        var businessIdList = doc.userBars.businessIdList;
+        // console.log(businessIdList);
+        if (businessIdList.indexOf(buttonId) === -1) {
+          // console.log("id not found...");
+          businessIdList.push(buttonId);
+        }
+
+        doc.save(function(err, doc) {
+          if (err) {
+            res.send(null, 500);
+          }
+        })
+
+        res.json(doc.userBars);
       });
   };
 

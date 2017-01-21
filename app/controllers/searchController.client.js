@@ -84,10 +84,11 @@
     if (!user) {
       // Open login window
     }
-    var buttonId = $(this).attr('id');
-    // console.log(buttonId);
-    $.post('/api/:id/bars', { buttonId: buttonId } function(data) {
 
+    var buttonId = $(this).attr('id');
+    
+    $.post('/api/:id/bars', { buttonId: buttonId }, function(data) {
+      // console.log(data);
     });
     
 
