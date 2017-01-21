@@ -135,7 +135,20 @@ function BarHandler() {
   };
 
   this.getAllBars = function(req, res) {
-
+    Bars
+      .find()
+      .exec(function (err, result) {
+        if (err) { throw err; }
+        if (result) {
+          var resultObj = {};
+          for (var i=0; i<result.length; i++) {
+            var businessId = result[i]['businessId'];
+            resultObj[businessId] = result[i];
+          }
+   
+          res.json(resultObj);
+        }
+      });
   };
 
 }
