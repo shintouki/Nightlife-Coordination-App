@@ -2,6 +2,10 @@
 @import 'search';
 @import 'my-bars';
 
+.text-italic {
+  font-style: italic;
+}
+
 body {
   background-color: #333;
   color: white;
@@ -13,12 +17,8 @@ body {
 }
 
 .list-group-item {
-  background-color: purple;
-}
-
-#author-container {
-  background-color: #333;
-  padding: 0;
+  background-color: black;
+  border: none;
 }
 
 .twitter-color {
@@ -35,3 +35,7 @@ input {
   color: #33b5e5
 }
 
+#author-container {
+  background-color: #333;
+  padding: 0;
+}

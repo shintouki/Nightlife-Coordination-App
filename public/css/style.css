@@ -21,6 +21,16 @@
 #search-button {
   border: 1px solid #337ab7; }
 
+.leftDiv {
+  float: left;
+  margin-right: 1em; }
+
+.barName {
+  margin-right: 1em; }
+
+.text-italic {
+  font-style: italic; }
+
 body {
   background-color: #333;
   color: white; }
@@ -30,11 +40,8 @@ body {
   border: none; }
 
 .list-group-item {
-  background-color: purple; }
-
-#author-container {
-  background-color: #333;
-  padding: 0; }
+  background-color: black;
+  border: none; }
 
 .twitter-color {
   background-color: #4099FF;
@@ -46,5 +53,9 @@ input {
 
 .info-color {
   color: #33b5e5; }
+
+#author-container {
+  background-color: #333;
+  padding: 0; }
 
 /*# sourceMappingURL=style.css.map */
