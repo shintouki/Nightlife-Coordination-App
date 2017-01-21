@@ -9,7 +9,7 @@ var User = new Schema({
     displayName: String
   },
   userBars: {
-    barList: [String]
+    businessIdList: [String]
   }
 });
 

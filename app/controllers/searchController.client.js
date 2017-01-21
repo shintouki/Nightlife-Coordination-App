@@ -14,9 +14,9 @@
   });
 
   searchButton.click(function() {
+
     var searchLocation = searchInput.val();
     $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
-      // console.log(data);
 
       // Empty search results div before adding new search results
       searchResult.empty();
@@ -63,7 +63,8 @@
 
         var $button = $("<button>", {
           text: '0 GOING',
-          class: 'btn btn-primary'
+          class: 'going-btn btn btn-primary',
+          id: id + '-btn'
         });
 
         $leftDiv.append($img);
@@ -77,6 +78,19 @@
         searchResult.append($div);
       }
     }, 'json');
+  });
+
+  searchResult.on("click", ".going-btn", function() {
+    if (!user) {
+      // Open login window
+    }
+    var buttonId = $(this).attr('id');
+    // console.log(buttonId);
+    $.post('/api/:id/bars', { buttonId: buttonId } function(data) {
+
+    });
+    
+
   });
    
 })();

@@ -65,7 +65,7 @@ module.exports = function(app, passport) {
     });
 
   app.route('/api/:id/bars')
-    .get(isLoggedIn, barHandler.getUserBars)
+    .get(isLoggedIn, barHandler.getUserBarIds)
     .post(isLoggedIn, barHandler.addUserBar)
     .delete(isLoggedIn, barHandler.deleteUserBar);
 
