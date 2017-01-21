@@ -2,9 +2,35 @@
 
 (function () {
 
-  var searchResult = $('#user-bars');
+  var userBars = $('#user-bars');
 
-  searchResult.on("click", ".going-btn", function() {
+  $(document).ready(function() {
+    
+    $.get('/api/:id/bars', function(data) {
+      var userBusinessIds = data.businessIdList;
+
+      $.get('/api/allbars', function(data) {
+        for (var i = 0; i < userBusinessIds.length; i++) {
+          var currBarObj = data[userBusinessIds[i]];
+
+          var businessId = currBarObj.businessId;
+          var numAttending = currBarObj.numAttending;
+          var image_url = currBarObj.image_url;
+          var snippet_text = currBarObj.snippet_text;
+          var url = currBarObj.url;
+          var name = currBarObj.name;
+          var rating = currBarObj.rating;
+
+          
+        }
+
+      });
+
+    });
+
+  });
+
+  userBars.on("click", ".going-btn", function() {
     if (!user) {
       // Open login window
     }
