@@ -21,7 +21,64 @@
           var name = currBarObj.name;
           var rating = currBarObj.rating;
 
-          
+          var $div = $("<div>", {
+            class: "list-group-item"
+          });
+
+          var $row = $("<div>", {
+            class: "row"
+          });
+
+          var $leftDiv = $("<div>", {
+            class: "leftDiv"
+          });
+
+          var $rightDiv = $("<div>", {
+            class: "rightDiv"
+          }); 
+
+          var $img = $("<img />", {
+            src: image_url,
+            alt: 'Image of ' + name
+          });
+
+          var $name = $("<a>", {
+            href: url,
+            class: 'barName',
+          });
+
+          $name
+            .append($('<span></span>')
+              .addClass('name')
+              .text(name)
+            )
+            .append(' - ')
+            .append($('<span></span>')
+              .addClass('rating')
+              .text(rating)
+            )
+            .append(' stars');
+
+          var $snippet = $("<p>", {
+            text: snippet_text,
+            class: 'snippet-text text-italic'
+          });
+
+          var $button = $("<button>", {
+            text: numAttending + ' GOING',
+            class: 'going-btn btn btn-primary',
+            id: businessId
+          });
+
+          $leftDiv.append($img);
+          $rightDiv.append($name);
+          $rightDiv.append($button);
+          $rightDiv.append($snippet);
+          $row.append($leftDiv);
+          $row.append($rightDiv);
+          $div.append($row);
+
+          userBars.append($div);
         }
 
       });
