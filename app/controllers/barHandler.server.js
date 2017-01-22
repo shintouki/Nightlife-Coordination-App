@@ -159,21 +159,24 @@ function BarHandler() {
           res.send(null, 500);
         }
         else if (doc) {
-          if (doc.numAttending === 0) {
-            // Delete bar document from DB
-            doc.remove();
-            res.send("Document removed");
-          }
-
           // Decrement numAttending by 1 since user is not going anymore
           doc.numAttending--;
 
-          doc.save(function(err, doc) {
-            if (err) {
-              res.send(null, 500);
-            }
-            res.send(doc);
-          })
+          // Check if num attending is 0 to see if doc should be deleted
+          if (doc.numAttending === 0) {
+            // Delete bar document from DB
+            doc.remove();
+            res.json("Document removed");
+
+          }
+          else {
+            doc.save(function(err, doc) {
+              if (err) {
+                res.send(null, 500);
+              }
+              res.send(doc);
+            })
+          }
         }
 
       });

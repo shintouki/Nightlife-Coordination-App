@@ -17,7 +17,7 @@
 
     var searchLocation = searchInput.val();
     $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
-      console.log(data);
+
       if (data === "Error") {
         alert("Location entered is not valid. Please try again.");
         return;
@@ -157,10 +157,15 @@
           $.delete('/api/:id/bars', {
             buttonId: buttonId
           }, function(data) {
-            // console.log("delete req");
-            // console.log(data);
-            var numAttending = data.numAttending;
-            currButton.text(numAttending + ' GOING');
+            console.log(data);
+            if (data === "Document removed") {
+              currButton.text('0 GOING');
+            }
+            else {
+              var numAttending = data.numAttending;
+              currButton.text(numAttending + ' GOING');
+            }
+            
           })
         }
 
