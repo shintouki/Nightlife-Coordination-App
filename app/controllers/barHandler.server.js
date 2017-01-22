@@ -40,6 +40,7 @@ function BarHandler() {
     })
     .catch(function (err) {
       console.error(err);
+      res.json("Error");
     });
   };
 
