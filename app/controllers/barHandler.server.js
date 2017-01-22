@@ -13,10 +13,10 @@ function BarHandler() {
     // console.log(searchLocation);
 
     var yelp = new Yelp({
-      consumer_key: configAuth.yelpAuth.consumer_key,
-      consumer_secret: configAuth.yelpAuth.consumer_secret,
-      token: configAuth.yelpAuth.token,
-      token_secret: configAuth.yelpAuth.token_secret,
+      consumer_key: process.env.YELP_KEY,
+      consumer_secret: process.env.YELP_SECRET,
+      token: process.env.YELP_TOKEN,
+      token_secret: process.env.YELP_TOKEN_SECRET,
     });
 
     yelp.search({ term: 'bar', location: searchLocation })
@@ -159,6 +159,12 @@ function BarHandler() {
           res.send(null, 500);
         }
         else if (doc) {
+          if (doc.numAttending === 0) {
+            // Delete bar document from DB
+            doc.remove();
+            res.send("Document removed");
+          }
+
           // Decrement numAttending by 1 since user is not going anymore
           doc.numAttending--;
 

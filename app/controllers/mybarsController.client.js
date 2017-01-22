@@ -124,8 +124,15 @@
         $.delete('/api/:id/bars', {
           buttonId: buttonId
         }, function(data) {
-          var numAttending = data.numAttending;
-          currButton.text(numAttending + ' GOING');
+          console.log(data);
+          if (data === "Document removed") {
+            currButton.text('0 GOING');
+          }
+          else {
+            var numAttending = data.numAttending;
+            currButton.text(numAttending + ' GOING');
+          }
+          
         })
       }
 
