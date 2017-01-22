@@ -13,10 +13,10 @@ function BarHandler() {
     // console.log(searchLocation);
 
     var yelp = new Yelp({
-      consumer_key: 'obLXq4WPpu0CLtkOVbzvTg',
-      consumer_secret: 'dVIHqPYTLe4OA_rkY8DL4-ekEEs',
-      token: '4EBs2Vqr3pRUmNYf5jHTEM97Yk5gzRT0',
-      token_secret: '_lJ-bAXv97rODt9azOwY_PGLCAw',
+      consumer_key: configAuth.yelpAuth.consumer_key,
+      consumer_secret: configAuth.yelpAuth.consumer_secret,
+      token: configAuth.yelpAuth.token,
+      token_secret: configAuth.yelpAuth.token_secret,
     });
 
     yelp.search({ term: 'bar', location: searchLocation })
