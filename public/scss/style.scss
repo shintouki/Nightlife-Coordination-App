@@ -2,22 +2,30 @@
 @import 'search';
 @import 'my-bars';
 
+$body-bg-color: #49274A;
+$container-bg-color: #94618E;
+$list-group-item-bg-color: #94618E;
+
+a {
+  color: white;
+}
+
 .text-italic {
   font-style: italic;
 }
 
 body {
-  background-color: #333;
+  background-color: $body-bg-color;
   color: white;
 }
 
 .container {
-  background-color: black;
+  background-color: $container-bg-color;
   border: none;
 }
 
 .list-group-item {
-  background-color: black;
+  background-color: $list-group-item-bg-color;
   border: none;
 }
 
@@ -36,6 +44,6 @@ input {
 }
 
 #author-container {
-  background-color: #333;
+  background-color: $body-bg-color;
   padding: 0;
 }

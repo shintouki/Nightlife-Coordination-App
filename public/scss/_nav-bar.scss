@@ -1,6 +1,14 @@
+$navbar-bg-color: #49274A;
+$nav-hightlight-color: #4484CE;
+
 .navbar-inverse {
-  background-color: #333;
+  background-color: $navbar-bg-color;
   border: none;
+
+}
+
+.navbar-default .navbar-brand {
+  color: white;
 }
 
 .navbar-btn {
@@ -8,11 +16,12 @@
   margin-left: 8px;
 }
 
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: teal;
+  color: white;
+  background-color: $nav-hightlight-color;
 }
 
 #logoutMenu {

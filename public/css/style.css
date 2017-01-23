@@ -1,6 +1,9 @@
 .navbar-inverse {
-  background-color: #333;
+  background-color: #49274A;
   border: none; }
+
+.navbar-default .navbar-brand {
+  color: white; }
 
 .navbar-btn {
   margin-right: 8px;
@@ -9,8 +12,8 @@
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: teal; }
+  color: white;
+  background-color: #4484CE; }
 
 #logoutMenu {
   text-align: center; }
@@ -28,19 +31,22 @@
 .barName {
   margin-right: 1em; }
 
+a {
+  color: white; }
+
 .text-italic {
   font-style: italic; }
 
 body {
-  background-color: #333;
+  background-color: #49274A;
   color: white; }
 
 .container {
-  background-color: black;
+  background-color: #94618E;
   border: none; }
 
 .list-group-item {
-  background-color: black;
+  background-color: #94618E;
   border: none; }
 
 .twitter-color {
@@ -55,7 +61,7 @@ input {
   color: #33b5e5; }
 
 #author-container {
-  background-color: #333;
+  background-color: #49274A;
   padding: 0; }
 
 /*# sourceMappingURL=style.css.map */
