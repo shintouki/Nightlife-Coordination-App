@@ -13,6 +13,109 @@
     }
   });
 
+  // Load search results from searchLocation value in cookies
+  $(document).ready(function() {
+    var searchLocation = document.cookie.replace(/(?:(?:^|.*;\s*)searchLocation\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log(searchLocation);
+
+    // Load search results if location cookie exists
+    if (searchLocation !== "") {
+      $.get('/yelp-search', { searchLocation: searchLocation }, function(data) {
+
+        // Empty search results div before adding new search results
+        searchResult.empty();
+        
+        for (var i = 0; i < data.length; i++) {
+          var rating = data[i].rating;
+          var name = data[i].name;
+          var url = data[i].url;
+          var snippet_text = data[i].snippet_text;
+          var image_url = data[i].image_url;
+          var id = data[i].id;
+          var buttonId = id + '-btn';
+
+          var $div = $("<div>", {
+            class: "list-group-item"
+          });
+
+          var $row = $("<div>", {
+            class: "row"
+          });
+
+          var $leftDiv = $("<div>", {
+            class: "leftDiv"
+          });
+
+          var $rightDiv = $("<div>", {
+            class: "rightDiv"
+          }); 
+
+          var $img = $("<img />", {
+            src: image_url,
+            alt: 'Image of ' + name
+          });
+
+          var $name = $("<a>", {
+            href: url,
+            class: 'barName',
+          });
+
+          $name
+            .append($('<span></span>')
+              .addClass('name')
+              .text(name)
+            )
+            .append(' - ')
+            .append($('<span></span>')
+              .addClass('rating')
+              .text(rating)
+            )
+            .append(' stars');
+
+          var $snippet = $("<p>", {
+            text: snippet_text,
+            class: 'snippet-text text-italic'
+          });
+
+          var $button = $("<button>", {
+            text: '0 GOING',
+            class: 'going-btn btn btn-primary',
+            id: buttonId
+          });
+
+          $leftDiv.append($img);
+          $rightDiv.append($name);
+          $rightDiv.append($button);
+          $rightDiv.append($snippet);
+          $row.append($leftDiv);
+          $row.append($rightDiv);
+          $div.append($row);
+
+          searchResult.append($div);
+
+        }
+
+        $.get('/api/allbars', function (data) {
+          // List of list-group-items which holds each bar details
+          // var listGroupItems = $('.list-group-item');
+          var $buttons = $('.going-btn');
+          $('.going-btn').each(function(i, obj) {
+            var currButtonId = obj.id;
+            if (currButtonId in data) {
+              var numAttending = data[currButtonId].numAttending;
+              $(this).text(numAttending + ' GOING');
+            }
+          
+
+          });
+
+        }, 'json');
+
+      }, 'json');
+    }
+  });
+
+
   searchButton.click(function() {
 
     var searchLocation = searchInput.val();
@@ -22,6 +125,8 @@
         alert("Location entered is not valid. Please try again.");
         return;
       }
+      document.cookie = "searchLocation=" + searchLocation;
+      
       // Empty search results div before adding new search results
       searchResult.empty();
       
