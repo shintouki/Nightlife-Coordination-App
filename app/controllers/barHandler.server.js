@@ -38,7 +38,7 @@ function BarHandler() {
 
       res.json(returnArr);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       console.error(err);
       res.json("Error");
     });

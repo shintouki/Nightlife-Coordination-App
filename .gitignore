@@ -3,3 +3,5 @@ node_modules/
 .eslintrc*
 .env*
 npm-debug.log
+*.swp
+*.swo
