@@ -4,8 +4,6 @@ var Bars = require('../models/bars.js');
 var Users = require('../models/users.js');
 var Yelp = require('yelp');
 
-var appUrl = process.env.APP_URL
-
 function BarHandler() {
 
   this.yelpSearch = function(req, res) {
