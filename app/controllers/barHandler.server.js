@@ -6,6 +6,7 @@ var Yelp = require('yelp');
 
 function BarHandler() {
 
+  // Use yelp api to search for bars using location sent over from client side
   this.yelpSearch = function(req, res) {
     var searchLocation = req.query.searchLocation;
     // console.log(searchLocation);
@@ -17,6 +18,8 @@ function BarHandler() {
       token_secret: process.env.YELP_TOKEN_SECRET,
     });
 
+    // yelp api search function, takes in an object paramenter with
+    // search term, which is always bar, and search location.
     yelp.search({ term: 'bar', location: searchLocation })
     .then(function (data) {
       var businesses = data.businesses;
@@ -42,6 +45,7 @@ function BarHandler() {
     });
   };
 
+  // Get user's bar ids and send it back in json format, using restful style
   this.getUserBarIds = function(req, res) {
     Users
       .findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
@@ -52,6 +56,7 @@ function BarHandler() {
       });
   };
 
+  // Add a bar to user and save to DB
   this.addUserBar = function(req, res) {
     var buttonId = req.body.buttonId;
     var rating = req.body.rating;
@@ -181,6 +186,7 @@ function BarHandler() {
 
   };
 
+  // Get all bars picked by at least one user and send it back in json format
   this.getAllBars = function(req, res) {
     Bars
       .find()

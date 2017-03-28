@@ -1,5 +1,6 @@
 'use strict';
 
+// User bar page controller. Show bars the user is going to.
 (function () {
 
   var userBars = $('#user-bars');

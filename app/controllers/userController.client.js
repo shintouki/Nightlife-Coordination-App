@@ -1,5 +1,6 @@
 'use strict';
 
+// Get username from DB
 (function () {
    var displayName = document.querySelector('#display-name');
    var apiUrl = appUrl + '/api/:id';

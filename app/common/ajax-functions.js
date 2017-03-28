@@ -1,5 +1,6 @@
 var appUrl = window.location.origin;
 
+// ajax functions for using get, post, delete, etc.
 var ajaxFunctions = {
   ready: function ready (fn) {
     if (typeof fn !== 'function') {

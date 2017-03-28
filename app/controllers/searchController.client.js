@@ -13,7 +13,8 @@
     }
   });
 
-  // Load search results from searchLocation value in cookies
+  // Load search results from searchLocation value in cookies, so search
+  // gets saved even if page refreshes.
   $(document).ready(function() {
     var searchLocation = document.cookie.replace(/(?:(?:^|.*;\s*)searchLocation\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     console.log(searchLocation);
